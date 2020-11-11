@@ -24,6 +24,10 @@ function useSelect(keys) {
     return isCreatingEntry ? [] : readActionAllowedFields;
   }, [isCreatingEntry, readActionAllowedFields]);
 
+  const allowedFieldsValues = useMemo(() => {
+    return Object.fromEntries(allowedFields.map(fieldKey => [fieldKey, get(modifiedData, fieldKey, null)]))
+  }, [allowedFields, modifiedData])
+
   const value = get(modifiedData, keys, null);
 
   return {
@@ -35,6 +39,7 @@ function useSelect(keys) {
     readableFields,
     shouldNotRunValidations,
     value,
+    allowedFieldsValues,
   };
 }
 

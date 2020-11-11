@@ -80,6 +80,7 @@ function Inputs({
   readableFields,
   shouldNotRunValidations,
   value,
+  allowedFieldsValues,
 }) {
   const {
     strapi: { fieldApi },
@@ -299,6 +300,7 @@ function Inputs({
             validations={validations}
             value={inputValue}
             withDefaultValue={false}
+            allowedFieldsValues={allowedFieldsValues}
           />
         );
       }}
@@ -329,6 +331,7 @@ Inputs.propTypes = {
   readableFields: PropTypes.array.isRequired,
   shouldNotRunValidations: PropTypes.bool.isRequired,
   value: PropTypes.any,
+  allowedFieldsValues: PropTypes.object,
 };
 
 const Memoized = memo(Inputs, isEqual);
